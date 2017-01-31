@@ -95,11 +95,11 @@ public class Fecha {
 		int dia, mes, anio;
 		Fecha fech;
 		do{
-			System.out.println("Dia");
+			System.out.print("Dia:");
 			dia=teclado.nextInt();
-			System.out.println("Mes");
+			System.out.print("Mes:");
 			mes=teclado.nextInt();
-			System.out.println("Año");
+			System.out.print("Año:");
 			anio=teclado.nextInt();
 			fech=new Fecha(dia, mes, anio);
 
@@ -236,6 +236,11 @@ public class Fecha {
 		
 		fech=new Fecha(dia, mes, anio);
 		return fech;
+		
+	}
+	public void mostrar() {
+
+		System.out.print(getDia()+"/"+getMes()+"/"+getAnio());
 		
 	}
 
