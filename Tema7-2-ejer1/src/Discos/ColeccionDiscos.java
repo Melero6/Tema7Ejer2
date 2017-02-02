@@ -9,13 +9,14 @@ public class ColeccionDiscos {
 
 	public ColeccionDiscos(){
 
-		Fecha fech=new Fecha(0,0,0);
+		Fecha fech=new Fecha(1,1,1);
 		coleccion=new Disco[100];
 		for(int i=0;i<100;i++){
 			coleccion[i]=new Disco(0,0,"","","",fech);
 		}
 
 	}
+
 
 
 	public void añadir(Disco disc, int indice){
@@ -29,7 +30,7 @@ public class ColeccionDiscos {
 			System.out.println("Existe un disco en esta posicion, ¿desea sobreescribirlo? Y/N");
 		seleccion=teclado.nextLine();
 		
-		}while(seleccion.compareToIgnoreCase("N")!=0||seleccion.compareToIgnoreCase("Y")!=0);
+		}while(seleccion.compareToIgnoreCase("N")!=0&&seleccion.compareToIgnoreCase("Y")!=0);
 			if(seleccion.compareToIgnoreCase("N")==0)
 				llave=false;
 		}
@@ -41,14 +42,15 @@ public class ColeccionDiscos {
 	
 	public void borrar(int indice){
 		
-		Fecha fech=new Fecha(0,0,0);
+		Fecha fech=new Fecha(1,1,1);
 		coleccion[indice]=new Disco(0,0,"","","",fech);
-		System.out.println("Se ha borrado el disco en la posicion: "+indice);
+
 		
 	}
 
 	public void mostrar(int indice){
 		System.out.println();
+		if(coleccion[indice].getTitulo().compareToIgnoreCase("")!=0){
 		Fecha fech;
 		System.out.println("Titulo: "+coleccion[indice].getTitulo());
 
@@ -65,6 +67,10 @@ public class ColeccionDiscos {
 		fech.mostrar();
 		
 		System.out.println();
+		}
+		else
+			System.out.println("Vacio.");
+		
 	}
 	public void mostrar(){
 		for(int indice=0;indice<100;indice++){
@@ -90,6 +96,16 @@ public class ColeccionDiscos {
 		else
 			System.out.println("Vacio.");
 		}
+	}
+	
+	public int existeEAN(String EAN){
+		int i=-1;
+		for(int indice=0;indice<100;indice++){
+			
+			if (EAN.equals(coleccion[indice].geteAN()))
+					i=indice;
+		}
+		return i;
 	}
 
 

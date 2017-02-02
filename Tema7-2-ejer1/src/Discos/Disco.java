@@ -7,7 +7,7 @@ public class Disco {
 	private int  nCanciones;
 	private String eAN, titulo, artista;
 	private Fecha fechaCompra;
-	float precio;
+	private float precio;
 	
 	public Disco(int nCanciones, float precio, String eAN, String titulo, String artista, Fecha fechaCompra) {
 		
@@ -18,23 +18,35 @@ public class Disco {
 		this.artista = artista;
 		this.fechaCompra = fechaCompra;
 	}
-	public Disco(){
+	public Disco visualCrearDisco(){
 		Scanner teclado = new Scanner(System.in);
+	
+		int  nCanciones1;
+		String eAN1, titulo1, artista1;
+		Fecha fechaCompra1;
+		float precio1;
 		
+		Disco temp;
 		System.out.print("Titulo:");
-		titulo=teclado.nextLine();
+		titulo1=teclado.nextLine();
 		System.out.print("Artista:");
-		artista=teclado.nextLine();
+		artista1=teclado.nextLine();
 		System.out.print("EAN:");
-		eAN=teclado.nextLine();
+		eAN1=teclado.nextLine();		
 		System.out.print("Nº de canciones:");
-		nCanciones=teclado.nextInt();
+		nCanciones1=teclado.nextInt();
 		System.out.print("Precio:");
-		precio=teclado.nextFloat();
+		precio1=teclado.nextFloat();
 		
-		fechaCompra=new Fecha();
-		fechaCompra=fechaCompra.validador();
+		
+		fechaCompra1=new Fecha();
+		fechaCompra1=fechaCompra1.validador();
+		temp=new Disco(nCanciones1, precio1, eAN1, titulo1, artista1, fechaCompra1);
+		
+		return temp;
 	}
+	
+	
 	public int getnCanciones() {
 		return nCanciones;
 	}
