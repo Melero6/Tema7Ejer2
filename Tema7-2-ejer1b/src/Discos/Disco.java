@@ -8,9 +8,9 @@ public class Disco {
 	private String eAN, titulo, artista;
 	private Fecha fechaCompra;
 	private float precio;
-	
+
 	public Disco(int nCanciones, float precio, String eAN, String titulo, String artista, Fecha fechaCompra) {
-		
+
 		this.nCanciones = nCanciones;
 		this.precio = precio;
 		this.eAN = eAN;
@@ -18,7 +18,7 @@ public class Disco {
 		this.artista = artista;
 		this.fechaCompra = fechaCompra;
 	}
-	
+
 	public void visualCrearDisco(){
 		Scanner teclado = new Scanner(System.in);
 
@@ -34,15 +34,14 @@ public class Disco {
 		setnCanciones(teclado.nextInt());
 		System.out.print("Precio:");
 		setPrecio(teclado.nextFloat());
-		
-		
+
 		fechaCompra1=new Fecha();
 		fechaCompra1=fechaCompra1.validador();
 		setFechaCompra(fechaCompra1);
-		
+
 	}
-	
-	
+
+
 	public int getnCanciones() {
 		return nCanciones;
 	}
@@ -88,10 +87,10 @@ public class Disco {
 	public Fecha getAño() {
 		return fechaCompra;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
