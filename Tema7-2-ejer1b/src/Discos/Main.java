@@ -10,11 +10,13 @@ public class Main {
 		
 
 		
-		int  seleccion=0, i;
+		int  seleccion;
+		boolean existeEAN, borrado;
+		
 		String eAN, repe;
 		Fecha fechaCompra=new Fecha(1,1,1);
 		ColeccionDiscos coleccionDisc=new ColeccionDiscos();
-		Disco disco=new Disco(0,0,"","","",fechaCompra);
+		
 
 		do{
 			eAN=null;
@@ -22,8 +24,9 @@ public class Main {
 		seleccion=teclado.nextInt();
 		switch(seleccion){
 		case 1://Mostrar
-			System.out.println("Introduce el EAN del disco que quieras mostrar, escribe 'todo' para ver todos los discos.");
-			eAN=teclado.nextLine();
+			System.out.print("Introduce el EAN del disco que quieras mostrar, escribe 'todo' para ver todos los discos: ");
+			eAN=teclado.next();
+			
 			
 			if(eAN.equals("todo")||eAN.equals("Todo")||eAN.equals("TODO"))
 				coleccionDisc.mostrar();
@@ -37,10 +40,15 @@ public class Main {
 			
 			break;
 		case 2://Eliminar
+
+			System.out.print("Introduce el EAN del disco que quieras borrar: ");
+			eAN=teclado.next();
+			borrado=coleccionDisc.borrar(eAN);
 			
-			System.out.println("Introduce el EAN del disco que quieras borrar");
-			eAN=teclado.nextLine();
-			coleccionDisc.borrar(eAN);
+			if (borrado)
+				System.out.println("No se ha borrado ningun disco, EAN no encontrado.");
+			else
+				System.out.println("Disco borrado.");
 			
 			do{
 			System.out.print("¿Desea realizar otra operacion? Y/N:");
@@ -49,16 +57,19 @@ public class Main {
 		
 			break;
 		case 3://Añadir
-			
+
+			Disco disco=new Disco(0,0,"","","",fechaCompra);
 			do{
-			disco.visualCrearDisco();
-			i=coleccionDisc.existeEAN(disco.geteAN());
-			if(i!=-1)
-				System.out.println("Existe un disco con el EAN: "+disco.geteAN());
-			}while(i!=-1);
-			
+				disco.visualCrearDisco();
+				existeEAN=coleccionDisc.existeEAN(disco.geteAN());
+				if(existeEAN){
+					System.out.println("Existe un disco con el EAN: "+disco.geteAN());
+					System.out.println("Introduce otro disco: ");
+				}
+			}while(existeEAN);
+
 			coleccionDisc.añadir(disco);
-			System.out.println("Disco añadido");
+			System.out.println("Disco añadido.");
 			
 			do{
 			System.out.print("¿Desea realizar otra operacion? Y/N:");
