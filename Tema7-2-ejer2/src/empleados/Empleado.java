@@ -8,7 +8,56 @@ public class Empleado {
 	private String nombre;
 	private String estadoC;
 	private String turno;
+	static private int salario = 425;
 	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTitulo(int titulo) {
+		this.titulo = titulo;
+	}
+
+	public void setAñosEmpresa(int añosEmpresa) {
+		this.añosEmpresa = añosEmpresa;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setEstadoC(String estadoC) {
+		this.estadoC = estadoC;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getTitulo() {
+		return titulo;
+	}
+
+	public int getAñosEmpresa() {
+		return añosEmpresa;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getEstadoC() {
+		return estadoC;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
 
 	public Empleado(int id, int titulo, int añosEmpresa, String nombre, String estadoC, String turno) {
 
@@ -20,10 +69,10 @@ public class Empleado {
 		this.turno = turno;
 	}
 	
-	public Empleado() {
+	public Empleado() { //Por defecto
 
 		this.id = 101;
-		this.titulo = 5;
+		this.titulo = -1;
 		this.añosEmpresa = -1;
 		this.nombre = "";
 		this.estadoC = "";
@@ -37,6 +86,7 @@ public class Empleado {
 			System.out.println("El id no esta entre 1 y 100.");
 			correcto=false;
 		}
+		
 		if (this.titulo<0||this.titulo>4){
 			System.out.println("La titualcion no esta entre 0 y 4.");
 			correcto=false;
@@ -53,11 +103,15 @@ public class Empleado {
 			System.out.println("El estado civil no es 'S','C','V' o 'D'.");
 			correcto=false;
 		}
+		if (this.añosEmpresa<0){
+			System.out.println("Los años en la empresa no pueden ser negativos.");
+			correcto=false;
+		}
 		
 		return correcto;
 	}
 	
-	public Empleado menu(){
+	public Empleado menuAñadir(){
 		Empleado emp;
 		Scanner teclado = new Scanner(System.in);
 		int id, titulo, añosEmpresa;
@@ -98,5 +152,11 @@ public class Empleado {
 		System.out.println("Turno: "+this.turno);
 		
 	}
+	public void modificarDato(){
+		
+		
+	}
+	
+	
 	
 }
