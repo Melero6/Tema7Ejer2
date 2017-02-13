@@ -58,7 +58,8 @@ public class Empleado {
 	public String getTurno() {
 		return turno;
 	}
-
+	
+	//Constructos del empleado con valores
 	public Empleado(int id, int titulo, int añosEmpresa, String nombre, String estadoC, String turno) {
 
 		this.id = id;
@@ -69,7 +70,7 @@ public class Empleado {
 		this.turno = turno;
 	}
 	
-	public Empleado() { //Por defecto
+	public Empleado() { //Constructor de empleado por defecto
 
 		this.id = 101;
 		this.titulo = -1;
@@ -79,7 +80,7 @@ public class Empleado {
 		this.turno = "";
 	}
 	
-	public boolean comprobar(){
+	public boolean comprobar(){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
 		boolean correcto=true;
 		
 		if (this.id<1||this.id>100){
@@ -111,14 +112,15 @@ public class Empleado {
 		return correcto;
 	}
 	
-	public Empleado menuAñadir(){
+	public Empleado menuAñadir(){//si el objeto empleado tiene los valores correctos, entonces continua.
 		Empleado emp;
 		Scanner teclado = new Scanner(System.in);
 		int id, titulo, añosEmpresa;
 		String nombre, estadoC, turno;
-		boolean correcto=true;
+		boolean correcto;
 		
 		do{
+		
 		System.out.print("Id");
 		id=teclado.nextInt();
 		System.out.print("Nombre");
@@ -137,12 +139,11 @@ public class Empleado {
 		correcto=emp.comprobar();
 		}while(!correcto);
 		
-		
 		return emp;
 		
 	}
 	
-	public void mostrar(){
+	public void mostrar(){//Muestra un empleado.
 		
 		System.out.println("ID: "+this.id);
 		System.out.println("Nombre: "+this.nombre);

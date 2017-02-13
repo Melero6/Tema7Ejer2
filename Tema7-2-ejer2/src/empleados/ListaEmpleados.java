@@ -10,7 +10,7 @@ public class ListaEmpleados {
 
 	}
 	
-	public ListaEmpleados(){
+	public ListaEmpleados(){//Crea la lista de empleados con los valores del empleado por defecto
 		Empleado defecto=new Empleado();
 		lista=new Empleado[100];
 		for (int i=0;i<100;i++)
@@ -18,7 +18,7 @@ public class ListaEmpleados {
 
 	}
 	
-	public int buscar(int busca){
+	public int buscar(int busca){//busca un id en la lista de empleados
 		int indice=-1;
 		
 		for(int i=0;i<100;i++)
@@ -28,7 +28,7 @@ public class ListaEmpleados {
 		return indice;
 	}
 	
-	public boolean comprobarDuplicados(int id){
+	public boolean comprobarDuplicados(int id){//comprueba si existe el id que vamos a introducir
 		boolean duplicado=false;
 		
 		for(int i=0;i<100;i++)

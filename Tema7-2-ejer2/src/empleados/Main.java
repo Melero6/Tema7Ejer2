@@ -19,7 +19,7 @@ public class Main {
 	
 		
 		do{
-		
+		//Menu de seleccion
 		System.out.println("*Elige el numero de opearacion que quiere realizar*\n1-Añadir empleado.\n2-Mostrar empleado.\n3-Mostrar todos los empleados.\n4-Eliminar un empleado.\n5-Consultar salario de un empleado.\n6-Consultar la suma de las nominas.\n7-Salir del programa.");
 		seleccion=teclado.nextInt();
 		switch(seleccion){
