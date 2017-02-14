@@ -4,12 +4,21 @@ import java.util.Scanner;
 
 public class Empleado {
 	
-	private int id, titulo, añosEmpresa;
+	
+	private int id, titulo, añosEmpresa, salario;
 	private String nombre;
 	private String estadoC;
 	private String turno;
-	static private int salario = 425;
+	static private int salariobase = 425;
 	
+	
+	public int getSalario() {
+		return salario;
+	}
+
+	public void setSalario(int salario) {
+		this.salario = salario;
+	}
 	
 	public void setId(int id) {
 		this.id = id;
@@ -139,7 +148,45 @@ public class Empleado {
 		correcto=emp.comprobar();
 		}while(!correcto);
 		
+		emp.sumaSalario();
 		return emp;
+		
+	}
+	
+	public void sumaSalario(){
+		int salario=0;
+		
+		salario+=75*this.añosEmpresa;
+
+		switch (this.titulo){
+		case 0:
+			salario+=250;
+			break;
+		case 1:
+			salario+=500;
+			break;
+		case 2:
+			salario+=1000;
+			break;
+		case 3:
+			salario+=1250;
+			break;
+		case 4:
+			salario+=1500;
+			break;
+
+		}
+
+		if (this.turno.charAt(0)=='N'||this.turno.charAt(0)=='n')
+			salario+=100;
+		
+		if (this.estadoC.charAt(0)=='C'||this.estadoC.charAt(0)=='c')
+			salario=salario-(int)((float)salario*0.10);
+			
+		else
+			salario=salario-(int)((float)salario*0.12);
+		
+		setSalario(salario);
 		
 	}
 	

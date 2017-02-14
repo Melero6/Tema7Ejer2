@@ -38,9 +38,13 @@ public class ListaEmpleados {
 		return duplicado;
 	}
 	
-	public void mostrar(int id){
+	public int sumaSalarios(){
+		int sumaSalarios=0;
 		
-		
+		for (int i=0;i<100;i++)
+			sumaSalarios+=lista[i].getSalario();
+				
+		return sumaSalarios;
 		
 	}
 	
