@@ -75,6 +75,7 @@ public class Empleado {
 		return turno;
 	}
 
+
 	//Constructos del empleado con valores
 	public Empleado(int id, int titulo, int añosEmpresa, String nombre, String estadoC, String turno) {
 
@@ -84,7 +85,9 @@ public class Empleado {
 		this.nombre = nombre;
 		this.estadoC = estadoC;
 		this.turno = turno;
+		
 	}
+
 
 	public Empleado() { //Constructor de empleado por defecto
 
@@ -96,32 +99,15 @@ public class Empleado {
 		this.turno = "";
 	}
 
-	public boolean comprobar(){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
+
+	public boolean comprobarEstado(String estadoC){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
 		boolean correcto=true;
 
-		if (this.id<0||this.id>99){
-			System.out.println("El id no esta entre 1 y 100.");
-			correcto=false;
-		}
-
-		if (this.titulo<0||this.titulo>4){
-			System.out.println("La titualcion no esta entre 0 y 4.");
-			correcto=false;
-		}
-		if ((this.turno.charAt(0)!='N'&&this.turno.charAt(0)!='n')&&
-				(this.turno.charAt(0)!='D'&&this.turno.charAt(0)!='d')){
-			System.out.println("El turno no es 'D' o 'N'.");
-			correcto=false;
-		}
-		if (this.estadoC.charAt(0)!='S'&&this.estadoC.charAt(0)!='s'&&
-				this.estadoC.charAt(0)!='C'&&this.estadoC.charAt(0)!='c'&&
-				this.estadoC.charAt(0)!='D'&&this.estadoC.charAt(0)!='d'&&
-				this.estadoC.charAt(0)!='V'&&this.estadoC.charAt(0)!='v'){
+		if (estadoC.charAt(0)!='S'&&estadoC.charAt(0)!='s'&&
+				estadoC.charAt(0)!='C'&&estadoC.charAt(0)!='c'&&
+				estadoC.charAt(0)!='D'&&estadoC.charAt(0)!='d'&&
+				estadoC.charAt(0)!='V'&&estadoC.charAt(0)!='v'){
 			System.out.println("El estado civil no es 'S','C','V' o 'D'.");
-			correcto=false;
-		}
-		if (this.añosEmpresa<0){
-			System.out.println("Los años en la empresa no pueden ser negativos.");
 			correcto=false;
 		}
 
@@ -129,37 +115,104 @@ public class Empleado {
 		return correcto;
 	}
 
+
+	public boolean comprobarId(int id){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
+		boolean correcto=true;
+
+		if (id<0||id>99){
+			System.out.println("El id no esta entre 1 y 100.");
+			correcto=false;
+		}
+
+		return correcto;
+	}
+
+
+	public boolean comprobarTitulo(int titulo){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
+		boolean correcto=true;
+
+		if (titulo<0||titulo>4){
+			System.out.println("La titualcion no esta entre 0 y 4.");
+			correcto=false;
+		}
+
+		return correcto;
+	}
+
+
+	public boolean comprobarTurno(String turno){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
+		boolean correcto=true;
+
+		if ((turno.charAt(0)!='N'&&turno.charAt(0)!='n')&&
+				(turno.charAt(0)!='D'&&turno.charAt(0)!='d')){
+			System.out.println("El turno no es 'D' o 'N'.");
+			correcto=false;
+		}
+
+		return correcto;
+	}
+
+
+	public boolean comprobarAñosEmpresa(int añosEmpresa){//comprueba que los valores introducidos para el empleado no esten fuera de los predeterminados.
+		boolean correcto=true;
+
+		if (añosEmpresa<0){
+			System.out.println("Los años en la empresa no pueden ser negativos.");
+			correcto=false;
+		}
+
+		return correcto;
+	}
+
+
 	public Empleado menuAñadir(){//si el objeto empleado tiene los valores correctos, entonces continua.
 		Empleado emp;
 		Scanner teclado = new Scanner(System.in);
 		int id, titulo, añosEmpresa;
 		String nombre, estadoC, turno;
-		boolean correcto;
+		boolean correcto=true;
+
 
 		do{
-
 			System.out.print("Id: ");
 			id=teclado.nextInt();
-			System.out.print("Nombre: ");
-			teclado.nextLine();
-			nombre=teclado.nextLine();
-			System.out.print("Titulacion: ");
-			titulo=teclado.nextInt();
-			System.out.print("Años: ");
-			añosEmpresa=teclado.nextInt();
-			System.out.print("Estado: ");
-			estadoC=teclado.next();	
-			System.out.print("Turno: ");
-			turno=teclado.next();
-
-			emp=new Empleado((id-1),titulo,añosEmpresa,nombre,estadoC,turno);
-			correcto=emp.comprobar();
+			correcto=comprobarId(id);
 		}while(!correcto);
 
+		System.out.print("Nombre: ");
+		teclado.nextLine();
+		nombre=teclado.nextLine();
+
+		do{
+			System.out.print("Titulacion: ");
+			titulo=teclado.nextInt();
+			correcto=comprobarTitulo(titulo);
+		}while(!correcto);
+
+		do{
+			System.out.print("Años: ");
+			añosEmpresa=teclado.nextInt();
+			correcto=comprobarAñosEmpresa(añosEmpresa);
+		}while(!correcto);	
+
+		do{
+			System.out.print("Estado: ");
+			estadoC=teclado.next();	
+			correcto=comprobarEstado(estadoC);
+		}while(!correcto);	
+
+		do{
+			System.out.print("Turno: ");
+			turno=teclado.next();
+			correcto=comprobarTurno(turno);
+		}while(!correcto);
+
+
+		emp=new Empleado((id-1),titulo,añosEmpresa,nombre,estadoC,turno);
 		emp.sumaSalario();
 		return emp;
-
 	}
+
 
 	public void sumaSalario(){
 		int salario=0;
@@ -182,7 +235,6 @@ public class Empleado {
 		case 4:
 			salario+=1500;
 			break;
-
 		}
 
 		if (this.turno.charAt(0)=='N'||this.turno.charAt(0)=='n')
@@ -197,6 +249,7 @@ public class Empleado {
 
 	}
 
+
 	public void mostrar(){//Muestra un empleado.
 
 		System.out.println("------------------------------------");
@@ -209,14 +262,6 @@ public class Empleado {
 		System.out.println("Salario: "+this.salario);
 		System.out.println("------------------------------------");
 		System.out.println();
-		
-	}
-	
-	public void modificarSalarioBase(int salarioNuevo){
-		setSalariobase(salarioNuevo);
 
 	}
-
-
-
 }
