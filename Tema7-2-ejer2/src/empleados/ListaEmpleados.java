@@ -1,6 +1,7 @@
 package empleados;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class ListaEmpleados {
 
@@ -30,30 +31,51 @@ public class ListaEmpleados {
 		return existe;
 	}
 	public ListaEmpleados(int numeroEmpleadosAleatorios){
-		int id, titulo, añosEmpresa;
-		String nombre, estadoC, turno;
-
+		int id, titulo, añosEmpresa, random;
+		String nombre="", estadoC="", turno="", caracteres="scvdnabefghijklmñopqrtuwxyz";
+		String[] palabras=new String[5];
+		palabras[0]="Marta";
+		palabras[1]="Javier";
+		palabras[2]="Sandra";
+		palabras[3]="David";
+		palabras[4]="Juan";
+		
+		
+		//(int)(Math.random()*(hasta-desde+1)+desde)
+		Empleado defecto1=new Empleado();
 		lista=new Empleado[100];
+		for (int i=0;i<100;i++)
+			lista[i]=defecto1;
+		
 		for (int i=0;i<numeroEmpleadosAleatorios;i++){
-			
-			
-			
-			
-			
-			
-			
+
+			id=i;
+
+			random=(int)(Math.random()*(4-0+1)+0);
+			nombre=palabras[random];
+
+			random=(int)(Math.random()*(3-0+1)+0);
+			estadoC+=caracteres.charAt(random);
+
+			random=(int)(Math.random()*(4-3+1)+3);
+			turno+=caracteres.charAt(random);
+
+			random=(int)(Math.random()*(4-0+1)+0);
+			titulo=random;
+
+			random=(int)(Math.random()*(20-0+1)+0);
+			añosEmpresa=random;
+
+
 			Empleado defecto=new Empleado(id, titulo, añosEmpresa, nombre, estadoC, turno);
 			defecto.sumaSalario();
 			lista[i]=defecto;
+			estadoC="";
+			turno="";
 		}
-		
-		
-		
-		
-		
-		
+
 	}
-	
+
 
 	public int buscar(int busca){//busca un id en la lista de empleados
 		int indice=-1;
@@ -75,9 +97,19 @@ public class ListaEmpleados {
 		return salario;
 	}
 
-	public void borrar(int id){
+	public boolean borrar(int id){
 		Empleado defecto=new Empleado();
-		lista[id]=defecto;
+		boolean estado=false;
+
+		for(int i=0;i<100;i++)
+			if (this.lista[i].getId()==id){
+				this.lista[i]=null;
+				this.lista[i]=defecto;
+				estado=true;
+			}
+
+		return estado;
+
 	}
 
 	public boolean comprobarDuplicados(int id){//comprueba si existe el id que vamos a introducir
@@ -113,16 +145,15 @@ public class ListaEmpleados {
 				this.lista[i].mostrar();
 	}
 
-	public void mostrar(int id){
-		boolean Existe=false;
+	public boolean mostrar(int id){
+		boolean existe=false;
 		for (int i=0;i<100;i++)
 			if (this.lista[i].getId()==(id-1)){
 				this.lista[i].mostrar();
-				Existe=true;
+				existe=true;
 			}
-		if (!Existe)
-			System.out.println("*Error: no existe un empleado con ese identificador*");
 
+		return existe;
 	}
 
 	public void modificar(int busca){
