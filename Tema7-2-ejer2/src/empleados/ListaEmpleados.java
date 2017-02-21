@@ -1,6 +1,7 @@
 package empleados;
 
 import java.util.Scanner;
+
 import java.util.Arrays;
 
 public class ListaEmpleados {
@@ -21,7 +22,7 @@ public class ListaEmpleados {
 
 	}
 
-	public boolean repetido(Empleado nuevo){
+	public boolean repetido(Empleado nuevo){//comprueba si existe un empleado
 		boolean existe=false;
 
 		for(int i=0;i<100;i++)
@@ -30,23 +31,23 @@ public class ListaEmpleados {
 
 		return existe;
 	}
-	public ListaEmpleados(int numeroEmpleadosAleatorios){
+	public ListaEmpleados(int numeroEmpleadosAleatorios){//Crea una cantidad de empleados con datos aleatorios, dentro de los limites.
 		int id, titulo, añosEmpresa, random;
-		String nombre="", estadoC="", turno="", caracteres="scvdnabefghijklmñopqrtuwxyz";
+		String nombre="", estadoC="", turno="", caracteres="scvdn";
 		String[] palabras=new String[5];
 		palabras[0]="Marta";
 		palabras[1]="Javier";
 		palabras[2]="Sandra";
 		palabras[3]="David";
 		palabras[4]="Juan";
-		
-		
+
+
 		//(int)(Math.random()*(hasta-desde+1)+desde)
 		Empleado defecto1=new Empleado();
 		lista=new Empleado[100];
 		for (int i=0;i<100;i++)
 			lista[i]=defecto1;
-		
+
 		for (int i=0;i<numeroEmpleadosAleatorios;i++){
 
 			id=i;
@@ -77,34 +78,25 @@ public class ListaEmpleados {
 	}
 
 
-	public int buscar(int busca){//busca un id en la lista de empleados
-		int indice=-1;
-
-		for(int i=0;i<100;i++)
-			if (this.lista[i].getId()==busca)
-				indice=i;
-
-		return indice;
-	}
 
 	public int consultaSalario(int busca){//busca un id en la lista de empleados
 		int salario=0;
 
 		for(int i=0;i<100;i++)
-			if (this.lista[i].getId()==busca)
+			if (this.lista[i].getId()==(busca-1))
 				salario=this.lista[i].getSalario();
 
 		return salario;
 	}
 
-	public boolean borrar(int id){
-		Empleado defecto=new Empleado();
+	public boolean borrar(int id){//Borra un empleado
+
 		boolean estado=false;
 
 		for(int i=0;i<100;i++)
-			if (this.lista[i].getId()==id){
-				this.lista[i]=null;
-				this.lista[i]=defecto;
+			if (this.lista[i].getId()==(id-1)){
+				this.lista[i].setId(101);//el id 101 esta fuera del indice
+				this.lista[i].setSalario(0);//quita el salario para que no se sume en la total
 				estado=true;
 			}
 
@@ -132,20 +124,20 @@ public class ListaEmpleados {
 
 	}
 
-	public void actualizacionSalarios(){
+	public void actualizacionSalarios(){//actualiza los salarios de todos los empleados
 
 		for(int i=0;i<100;i++)
 			if (this.lista[i].getId()!=101)
 				this.lista[i].sumaSalario();
 	}
 
-	public void mostrar(){
+	public void mostrar(){//Muestra todos los empleados
 		for (int i=0;i<100;i++)
 			if (this.lista[i].getId()!=101)
 				this.lista[i].mostrar();
 	}
 
-	public boolean mostrar(int id){
+	public boolean mostrar(int id){//muestra un empleado en concreto
 		boolean existe=false;
 		for (int i=0;i<100;i++)
 			if (this.lista[i].getId()==(id-1)){
@@ -156,31 +148,32 @@ public class ListaEmpleados {
 		return existe;
 	}
 
-	public void modificar(int busca){
+	public boolean modificar(int busca){//Permite modificar los datos de un empleado
 
-		Empleado emp;
-
+		Empleado emp=new Empleado();
+		Empleado defecto=new Empleado();
 		Scanner teclado = new Scanner(System.in);
-		int id, titulo, añosEmpresa, seleccion;
+		int titulo, añosEmpresa, seleccion;
 		String nombre, estadoC, turno;
-		boolean correcto=true, existe=true, bucleSeleccion;
+		boolean correcto=true, existe=false, bucleSeleccion;
 
 		for(int i=0;i<100;i++){
-			if (this.lista[i].getId()==busca);{
-				existe=false;
+			if (this.lista[i].getId()==(busca-1)){
+				existe=true;
 				emp=this.lista[i];
-
+				System.out.println("Este es el empleado:");
+				emp.mostrar();
 				do{
 					bucleSeleccion=true;
-					System.out.println("Escribe el numero del campo que quieres modificar:\n1-ID.\n2-Nombre.\n3-Titulacion.\n4-Años en la empresa.\n5-Estado civil.\n6-Turno de trabajo.");
+					System.out.println("- Escribe el numero del campo que quieres modificar:\n1-Turno de trabajo.\n2-Nombre.\n3-Titulacion.\n4-Años en la empresa.\n5-Estado civil.");
 					seleccion=teclado.nextInt();
 					switch (seleccion){
 					case 1:
 						do{
-							System.out.print("Id: ");
-							id=teclado.nextInt();
-							emp.setId(id);
-							correcto=emp.comprobarId(id);
+							System.out.print("Turno: ");
+							turno=teclado.next();
+							emp.setTurno(turno);
+							correcto=emp.comprobarTurno(turno);
 						}while(!correcto);
 						break;
 
@@ -218,13 +211,6 @@ public class ListaEmpleados {
 						}while(!correcto);	
 						break;
 
-					case 6:
-						do{
-							System.out.print("Turno: ");
-							turno=teclado.next();
-							emp.setTurno(turno);
-							correcto=emp.comprobarTurno(turno);
-						}while(!correcto);
 
 					default:
 						bucleSeleccion=false;
@@ -232,13 +218,12 @@ public class ListaEmpleados {
 
 					}
 				}while(!bucleSeleccion);
-
-				this.lista[i]=emp;
+				
+				emp.sumaSalario();
+				this.setEmpleado(emp);
 			}
 		}
-
-		if(!existe)
-			System.out.println("*ERROR: No se ha encontrado un empleado con el ID: "+busca+"*");
+		return existe;
 
 
 	}

@@ -85,7 +85,7 @@ public class Empleado {
 		this.nombre = nombre;
 		this.estadoC = estadoC;
 		this.turno = turno;
-		
+
 	}
 
 
@@ -171,8 +171,8 @@ public class Empleado {
 		int id, titulo, añosEmpresa;
 		String nombre, estadoC, turno;
 		boolean correcto=true;
-
-
+		
+		System.out.println("Escriba los datos del nuevo empleado:");
 		do{
 			System.out.print("Id: ");
 			id=teclado.nextInt();
@@ -214,7 +214,7 @@ public class Empleado {
 	}
 
 
-	public void sumaSalario(){
+	public void sumaSalario(){//calcula el salario de los empleados en funcion de sus datos
 		int salario=0;
 
 		salario+=75*this.añosEmpresa;
