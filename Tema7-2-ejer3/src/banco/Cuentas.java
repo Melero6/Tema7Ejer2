@@ -102,15 +102,19 @@ public class Cuentas {
 	
 	public void ordenar(){
 		int mayor=0;
+		CuentaCorriente[] aux=new CuentaCorriente[100];
+		System.arraycopy(lista, 0, aux, 0,nCuentas);
+		
 		
 		for (int i=0; i<nCuentas; i++){
-			for (int j=0;j<nCuentas; j++){
-				if (lista[i].getSaldo()>lista[j].getSaldo())
+			for (int j=0;j<nCuentas-i; j++){
+				if (aux[i].getSaldo()>aux[j].getSaldo())
 					mayor=i;
 				else
 					mayor=j;
 			}
 			posiciones[i]=mayor;
+			aux[i]=null;
 		}
 	}
 
