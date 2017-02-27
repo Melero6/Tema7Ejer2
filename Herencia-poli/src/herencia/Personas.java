@@ -56,9 +56,9 @@ public class Personas implements CalculoSalario {
 
 	public void mostrar(){
 		
-		System.out.println("PERSONA");
-		System.out.println("Nombre= "+nombre);
-		System.out.println("DNI= "+dni);
+		System.out.println("DATOS");
+		System.out.println("Nombre: "+nombre);
+		System.out.println("DNI: "+dni);
 		imprimeRecibo();
 
 	}

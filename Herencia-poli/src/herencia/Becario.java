@@ -20,7 +20,7 @@ public class Becario extends Personas {
 		this.beca = beca;
 	}
 	public void imprimeRecibo(){
-		System.out.printf("Beca:           %7.2f \n",calculo());
+		System.out.printf("Beca:                      %7.2f €\n",calculo());
 		System.out.println();
 		
 	}
@@ -33,7 +33,7 @@ public class Becario extends Personas {
 	public void mostrar(){
 		System.out.println("BECARIO");
 		super.mostrar();
-		imprimeRecibo();
+//		imprimeRecibo();
 		
 	}
 }

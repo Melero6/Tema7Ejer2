@@ -28,9 +28,9 @@ public class Empleado extends Personas {
 	}
 	public void imprimeRecibo(){
 		
-		System.out.println("Salario base:              "+salarioBase );
-		System.out.println("Antiguedad: "+ antiguedad+"              "+(antiguedad*(20+salarioBase*0.01F)));
-		System.out.println("Total:                     "+calculo());
+		System.out.printf("Salario base:               %7.2f €\n",salarioBase );
+		System.out.printf("Antiguedad: %2d             %7.2f €\n", antiguedad ,(antiguedad*(20+salarioBase*0.01F)));
+		System.out.printf("Total:                      %7.2f €\n",calculo());
 		System.out.println();
 	}
 	
@@ -69,7 +69,7 @@ public class Empleado extends Personas {
 
 		System.out.println("EMPLEADO");
 		super.mostrar();
-		imprimeRecibo();
+//		imprimeRecibo();
 
 	}
 	

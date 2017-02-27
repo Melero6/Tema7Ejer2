@@ -21,10 +21,10 @@ public class Jefe extends Empleado {
 	
 	public void imprimeRecibo(){
 		
-		System.out.println("Salario base:              "+Empleado.getSalarioBase() );
-		System.out.println("Antiguedad: "+ getAntiguedad()+"              "+(getAntiguedad()*(20+Empleado.getSalarioBase()*0.01F)));
-		System.out.println("Salario jefe:              "+salarioJefe);
-		System.out.printf("Total:                     %7.2f \n",calculo());
+		System.out.printf("Salario base:              %7.2f €\n",Empleado.getSalarioBase());
+		System.out.printf("Antiguedad: %2d             %7.2f €\n",getAntiguedad() ,(getAntiguedad()*(20+Empleado.getSalarioBase()*0.01F)));
+		System.out.printf("Salario jefe:              %7.2f €\n",salarioJefe);
+		System.out.printf("Total:                     %7.2f €\n",calculo());
 		System.out.println();
 		
 	}
@@ -66,7 +66,7 @@ public class Jefe extends Empleado {
 
 		System.out.println("JEFE");
 		super.sup();
-		imprimeRecibo();
+		//imprimeRecibo();
 
 	}
 
