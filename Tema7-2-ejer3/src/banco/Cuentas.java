@@ -107,14 +107,13 @@ public class Cuentas {
 		
 		
 		for (int i=0; i<nCuentas; i++){
-			for (int j=0;j<nCuentas-i; j++){
-				if (aux[i].getSaldo()>aux[j].getSaldo())
+			for (int j=i+1;j<nCuentas; j++){
+				if (aux[i].getSaldo()>=aux[j].getSaldo())
 					mayor=i;
 				else
 					mayor=j;
 			}
 			posiciones[i]=mayor;
-			aux[i]=null;
 		}
 	}
 
