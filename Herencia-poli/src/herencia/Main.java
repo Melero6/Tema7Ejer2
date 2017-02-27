@@ -12,35 +12,34 @@ public class Main {
 		
 		Personas cambio;
 		Personas[] vector;
-		vector=new Personas[3];
+		vector=new Personas[10];
 
-		for (int i=0;i<3;i++){
-			System.out.println("1-Persona\n2-Empleado\n3-Jefe");
+		for (int i=0;i<10;i++){
+			System.out.println("1-Persona\n2-Empleado\n3-Jefe\n4-Becario");
 			seleccion=teclado.nextInt();
 
 			switch(seleccion){
 			case 1:
 				cambio=new Personas();
-				cambio=cambio.añadir(seleccion);
 				vector[i]=cambio;
 				break;
 			case 2:
 				cambio=new Empleado();
-				cambio=cambio.añadir(seleccion);
 				vector[i]=cambio;
 				break;
 			case 3:
 				cambio=new Jefe();
-				cambio=cambio.añadir(seleccion);
 				vector[i]=cambio;
-				
 				break;
+			case 4:
+				cambio=new Becario();
+				vector[i]=cambio;
 			default:
 			}
 		}
 		
 		
-		for (int j=0;j<3;j++)
+		for (int j=0;j<10;j++)
 		   vector[j].mostrar();
 	}
 
