@@ -1,5 +1,6 @@
 package banco;
 
+import java.util.*;
 
 public class Cuentas {
 
@@ -39,12 +40,15 @@ public class Cuentas {
 	}
 	public void mostrarMayor(){
 		for (int i=0;i<nCuentas;i++){
+			
+			if(this.lista[i].getSaldo()==this.lista[0].getSaldo()){
 	        System.out.println("Codigo lista: "+ nCuentas);
 			System.out.println("Codigo: "+CuentaCorriente.getCodigo());
-			System.out.println("Titular: "+this.lista[(posiciones[i])].getTitular());
-			System.out.println("Saldo: "+this.lista[(posiciones[i])].getSaldo());
-			System.out.println("Numero: "+this.lista[(posiciones[i])].getNumero());
+			System.out.println("Titular: "+this.lista[i].getTitular());
+			System.out.println("Saldo: "+this.lista[i].getSaldo());
+			System.out.println("Numero: "+this.lista[i].getNumero());
 			System.out.println();
+			}
 		}	
 	}
 	
@@ -99,22 +103,35 @@ public class Cuentas {
 
 		return cuentaValida;
 	}
-	
-	public void ordenar(){
-		int mayor=0;
-		CuentaCorriente[] aux=new CuentaCorriente[100];
-		System.arraycopy(lista, 0, aux, 0,nCuentas);
-		
-		
-		for (int i=0; i<nCuentas; i++){
-			for (int j=i+1;j<nCuentas; j++){
-				if (aux[i].getSaldo()>=aux[j].getSaldo())
-					mayor=i;
-				else
-					mayor=j;
-			}
-			posiciones[i]=mayor;
-		}
-	}
 
+	public void ordenar(){
+		CuentaCorriente[] aux=new CuentaCorriente[1];
+
+		//	System.arraycopy(lista, 0, aux, 0,nCuentas); DOS FORMAS DE COPIAR ARRAYS
+		//  aux=Arrays.copyOf(lista ,nCuentas);
+
+		for (int i=0; i<nCuentas-1; i++){
+			for (int j=0;j<nCuentas-1-i; j++){
+				if (lista[j].getSaldo()<lista[j+1].getSaldo()){
+					aux[0]=lista[j];
+					lista[j]=lista[j+1];
+					lista[j+1]=aux[0];
+				}
+			}
+			
+		
+//			posiciones[0]=0;
+//			i=1;
+//			for (int j=1;j<nCuentas; j++){
+//				if (lista[0].getSaldo()==lista[j].getSaldo()){
+//					posiciones[i]=j;
+//					i++;
+//
+//				}
+//			}
+
+		}
+
+
+	}
 }
