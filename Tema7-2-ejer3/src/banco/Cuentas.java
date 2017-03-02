@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Cuentas {
 
-	
+
 	private CuentaCorriente[] lista;
 	static private int nCuentas;
 	private int[] posiciones;
-	
-	
+
+
 	public static void setnCuentas(int nCuentas) {
 		Cuentas.nCuentas = nCuentas;
 	}
@@ -17,18 +17,37 @@ public class Cuentas {
 	public static int getnCuentas() {
 		return nCuentas;
 	}
-	
+	public  CuentaCorriente getCuenta(int posicion) {
+		CuentaCorriente Cuenta = lista[posicion];
+
+		return Cuenta;
+	}
+
 	public Cuentas() {
-		
+
 		lista=new CuentaCorriente[100];
 		posiciones=new int[100];
+
+	}
+
+	public void ingresar(int seleccion, float ingreso){ 
+
+		lista[seleccion].setSaldo(lista[seleccion].getSaldo()+ingreso);
+		ordenar();
+
+	}
+
+	public void retirar(int seleccion, float retiro){
+
+		lista[seleccion].setSaldo(lista[seleccion].getSaldo()-retiro);
+		ordenar();
 
 	}
 
 
 	public void mostrar(){
 		for (int i=0;i<nCuentas;i++){
-	        System.out.println("Codigo lista: "+ nCuentas);
+			System.out.println("Codigo lista: "+ nCuentas);
 			System.out.println("Codigo: "+CuentaCorriente.getCodigo());
 			System.out.println("Titular: "+this.lista[i].getTitular());
 			System.out.println("Saldo: "+this.lista[i].getSaldo());
@@ -36,22 +55,22 @@ public class Cuentas {
 			System.out.println();
 
 		}
-		
+
 	}
 	public void mostrarMayor(){
 		for (int i=0;i<nCuentas;i++){
-			
+
 			if(this.lista[i].getSaldo()==this.lista[0].getSaldo()){
-	        System.out.println("Codigo lista: "+ nCuentas);
-			System.out.println("Codigo: "+CuentaCorriente.getCodigo());
-			System.out.println("Titular: "+this.lista[i].getTitular());
-			System.out.println("Saldo: "+this.lista[i].getSaldo());
-			System.out.println("Numero: "+this.lista[i].getNumero());
-			System.out.println();
+				System.out.println("Codigo lista: "+ nCuentas);
+				System.out.println("Codigo: "+CuentaCorriente.getCodigo());
+				System.out.println("Titular: "+this.lista[i].getTitular());
+				System.out.println("Saldo: "+this.lista[i].getSaldo());
+				System.out.println("Numero: "+this.lista[i].getNumero());
+				System.out.println();
 			}
 		}	
 	}
-	
+
 
 	public void  añadirCuentas(int numeroCuentas){//Crea una cantidad de cuentas con datos aleatorios.
 		float saldo; 
@@ -91,11 +110,11 @@ public class Cuentas {
 
 		}
 		ordenar();
-		
+
 	}
 	public boolean comprobarNumero(String numeroCuenta){
 		boolean cuentaValida=true;
-		
+
 		for (int i=0; i<nCuentas; i++)
 			if (lista[i].getNumero().equals(numeroCuenta))
 				cuentaValida=false;
@@ -118,17 +137,8 @@ public class Cuentas {
 					lista[j+1]=aux[0];
 				}
 			}
-			
-		
-//			posiciones[0]=0;
-//			i=1;
-//			for (int j=1;j<nCuentas; j++){
-//				if (lista[0].getSaldo()==lista[j].getSaldo()){
-//					posiciones[i]=j;
-//					i++;
-//
-//				}
-//			}
+
+
 
 		}
 
