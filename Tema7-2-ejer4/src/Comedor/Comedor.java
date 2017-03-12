@@ -107,7 +107,7 @@ public class Comedor {
 				System.out.println();
 				break;
 			default:
-
+				salir=true;
 
 			}
 		}while(!salir);
