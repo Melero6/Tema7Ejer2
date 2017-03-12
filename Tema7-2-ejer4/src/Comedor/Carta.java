@@ -30,15 +30,19 @@ public class Carta {
 		for(int i=0; i<6;i++){
 			separador=", ";
 			System.out.println("-------------------------------------");
-			System.out.println("Plato: "+listaPlatos[i].getNombre());
+			System.out.println("Plato "+i+": "+listaPlatos[i].getNombre());
 			System.out.print("Ingredientes: ");
 			for (int j=0; j<6;j++){
 			if(j==5)
 				separador=".";
 			System.out.print(listaPlatos[i].getIngredientes()[j]+separador);
 			}
-			System.out.println("\nPrecio: "+listaPlatos[i].getPrecio());
+			System.out.printf("\nPrecio: %2.2f€\n",listaPlatos[i].getPrecio());
 		}
-		
+		System.out.println("-------------------------------------");
+	}
+
+	public Plato getListaPlatos(int nPlato) {
+		return listaPlatos[nPlato];
 	}
 }
